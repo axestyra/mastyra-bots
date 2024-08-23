@@ -36,9 +36,9 @@ async def on_ready():
         name = f'{servers} servers and {members} members'
     ))
 
-    
-@bot.tree.command(name="case-notify", description="Case Host role required: Universally ping for vanilla case runs that are being hosted!")
-@app_commands.checks.has_role('Case Host')
+### You must specify ROLE_NAME_HERE, CHANNEL_ID_HERE, and ROLE_ID_HERE
+@bot.tree.command(name="case-notify", description="ROLE_NAME_HERE role required: Universally ping for vanilla case runs that are being hosted!")
+@app_commands.checks.has_role('ROLE_NAME_HERE')
 @app_commands.describe(case_name = "What is the name of the case?")
 @app_commands.describe(case_link = "What is the case document link?")
 @app_commands.describe(case_server = "What server is the case being hosted in?")
@@ -76,5 +76,5 @@ async def notify(interaction: discord.Interaction, case_name: str, case_link: st
     await coa_channel.send(f"<@&ROLE_ID_HERE>\n", embed=emb, allowed_mentions=discord.AllowedMentions(roles=True))
     await interaction.response.send_message(f"{interaction.user.name}, other users have been notified about your case run!")
 
-
+### You must specify PUT_TOKEN_HERE before starting the bot
 bot.run('PUT_TOKEN_HERE')
