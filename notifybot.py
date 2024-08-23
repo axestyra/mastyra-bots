@@ -57,13 +57,9 @@ async def notify(interaction: discord.Interaction, case_name: str, case_link: st
         emb.add_field(name="Additional Notes", value=f"{case_notes}", inline=False)
     if case_image != None:
         emb.set_image(url=case_image)
-    if case_server.lower() == "ole":
+    if case_server.lower() == "ole" or case_server.lower() == "official law empire":
          emb.set_thumbnail(url="https://files.catbox.moe/b83mpg.png")
-    elif case_server.lower() == "official law empire":
-         emb.set_thumbnail(url="https://files.catbox.moe/b83mpg.png")
-    elif case_server.lower() == "cc":
-         emb.set_thumbnail(url="https://files.catbox.moe/kgx0pr.png")
-    elif case_server.lower() == "case cafe":
+    elif case_server.lower() == "cc" or case_server.lower() == "case cafe":
          emb.set_thumbnail(url="https://files.catbox.moe/kgx0pr.png")
     elif case_server.lower() == "vanilla":
          emb.set_thumbnail(url="https://files.catbox.moe/buwdg6.png")
