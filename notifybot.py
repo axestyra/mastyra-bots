@@ -47,7 +47,7 @@ async def on_ready():
     ))
 
 
-@bot.tree.command(name="case-notify", description=f"{HOST_ROLE_NAME} role required: Universally ping for vanilla case runs that are being hosted!")
+@bot.tree.command(name="case-notify", description=f"{HOST_ROLE_NAME} role required: Universally ping for case runs that are being hosted!")
 @app_commands.checks.has_role(f'{HOST_ROLE_NAME}')
 @app_commands.describe(case_name = "What is the name of the case?")
 @app_commands.describe(case_link = "What is the case document link?")
