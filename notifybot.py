@@ -17,12 +17,14 @@ bot = commands.Bot(command_prefix="!", intents = discord.Intents.all())
 ### ROLE_ID is the id (string) of the role that will be pinged after the command is sent
 ### CHANNEL_ID is the id (integer) of the channel that ping messages are sent in. -1 is a placeholder, replace it
 ### BOT_TOKEN is the token (string) that connects this process to the discord application it will be active on
+### DEFAULT_IMAGE_LINK should be the direct image link to the default logo you want the ping embed to display
 
 ### If there are quotes, fill out the field within the quotes
 HOST_ROLE_NAME = ""
 PING_ROLE_ID = ""
 CHANNEL_ID = -1
 BOT_TOKEN = ""
+DEFAULT_IMAGE_LINK = ""
 
 @bot.event
 async def on_ready():
@@ -77,7 +79,7 @@ async def notify(interaction: discord.Interaction, case_name: str, case_link: st
          emb.set_thumbnail(url="https://files.catbox.moe/cu3xwh.png")
     # default condition for logo
     else:
-         emb.set_thumbnail(url="https://files.catbox.moe/rt9r8p.png")
+         emb.set_thumbnail(url=f"{DEFAULT_IMAGE_LINK}")
     
     ping_channel = await interaction.guild.fetch_channel(CHANNEL_ID)
     await ping_channel.send(f"<@&{PING_ROLE_ID}>\n", embed=emb, allowed_mentions=discord.AllowedMentions(roles=True))
