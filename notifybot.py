@@ -12,7 +12,17 @@ from typing import Optional
 
 
 bot = commands.Bot(command_prefix="!", intents = discord.Intents.all())
+### FILL THESE OUT BEFORE RUNNING THE BOT
+### ROLE_NAME is the name (string) of the discord role allowed to run the command
+### ROLE_ID is the id (string) of the role that will be pinged after the command is sent
+### CHANNEL_ID is the id (integer) of the channel that ping messages are sent in. -1 is a placeholder, replace it
+### BOT_TOKEN is the token (string) that connects this process to the discord application it will be active on
 
+### If there are quotes, fill out the field within the quotes
+ROLE_NAME = ""
+ROLE_ID = ""
+CHANNEL_ID = -1
+BOT_TOKEN = ""
 
 @bot.event
 async def on_ready():
@@ -37,8 +47,8 @@ async def on_ready():
     ))
 
 ### You must specify ROLE_NAME_HERE, CHANNEL_ID_HERE, and ROLE_ID_HERE
-@bot.tree.command(name="case-notify", description="ROLE_NAME_HERE role required: Universally ping for vanilla case runs that are being hosted!")
-@app_commands.checks.has_role('ROLE_NAME_HERE')
+@bot.tree.command(name="case-notify", description=f"{ROLE_NAME} role required: Universally ping for vanilla case runs that are being hosted!")
+@app_commands.checks.has_role(f'{ROLE_NAME}')
 @app_commands.describe(case_name = "What is the name of the case?")
 @app_commands.describe(case_link = "What is the case document link?")
 @app_commands.describe(case_server = "What server is the case being hosted in?")
@@ -65,12 +75,13 @@ async def notify(interaction: discord.Interaction, case_name: str, case_link: st
          emb.set_thumbnail(url="https://files.catbox.moe/buwdg6.png")
     elif case_server.lower() == "kv2" or case_server.lower() == "knight's vanilla 2" or case_server.lower() == "knights vanilla 2":
          emb.set_thumbnail(url="https://files.catbox.moe/cu3xwh.png")
+    # default condition for logo
     else:
          emb.set_thumbnail(url="https://files.catbox.moe/rt9r8p.png")
     
-    coa_channel = await interaction.guild.fetch_channel(CHANNEL_ID_HERE)
-    await coa_channel.send(f"<@&ROLE_ID_HERE>\n", embed=emb, allowed_mentions=discord.AllowedMentions(roles=True))
+    ping_channel = await interaction.guild.fetch_channel({CHANNEL_ID})
+    await ping_channel.send(f"<@&{ROLE_ID}>\n", embed=emb, allowed_mentions=discord.AllowedMentions(roles=True))
     await interaction.response.send_message(f"{interaction.user.name}, other users have been notified about your case run!")
 
 ### You must specify PUT_TOKEN_HERE before starting the bot
-bot.run('PUT_TOKEN_HERE')
+bot.run(f'{BOT_TOKEN}')
