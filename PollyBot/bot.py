@@ -110,7 +110,6 @@ async def hello(interaction:discord.Interaction):
     emb.set_thumbnail(url="https://files.catbox.moe/s18tz9.png")
     emb.set_footer(text="A case has been acquired!")
     await interaction.response.send_message(embed=emb, ephemeral=False)
-###    await interaction.response.send_message(f"{choosing}", ephemeral=False)
 
 @bot.tree.command(name="easyvcl", description="Get a random easy case document from Vanilla Case List!")
 async def hello(interaction:discord.Interaction):
