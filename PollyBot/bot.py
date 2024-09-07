@@ -9,7 +9,7 @@ from typing import Optional
 from typing import Literal
 
 ### SPECIFY THE TOKEN TO THE BOT HERE BEFORE RUNNING
-BOT_TOKEN_HERE = ''
+BOT_TOKEN = ''
 
 bot = commands.Bot(command_prefix="!", intents = discord.Intents.all())
 
@@ -183,4 +183,4 @@ async def hello(interaction:discord.Interaction):
     await interaction.response.send_message(embed=emb, ephemeral=False)
 
 
-bot.run(BOT_TOKEN_HERE)
+bot.run(BOT_TOKEN)

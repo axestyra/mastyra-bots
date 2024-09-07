@@ -9,9 +9,6 @@ from typing import List
 from typing import Literal
 from typing import Optional
 
-
-
-bot = commands.Bot(command_prefix="!", intents = discord.Intents.all())
 ### FILL THESE OUT BEFORE RUNNING THE BOT
 ### HOST_ROLE_NAME is the name (string) of the discord role allowed to run the command
 ### ROLE_ID is the id (string) of the role that will be pinged after the command is sent
@@ -25,6 +22,8 @@ PING_ROLE_ID = ""
 CHANNEL_ID = -1
 BOT_TOKEN = ""
 DEFAULT_IMAGE_LINK = ""
+
+bot = commands.Bot(command_prefix="!", intents = discord.Intents.all())
 
 @bot.event
 async def on_ready():
@@ -79,11 +78,11 @@ async def notify(interaction: discord.Interaction, case_name: str, case_link: st
          emb.set_thumbnail(url="https://files.catbox.moe/cu3xwh.png")
     # default condition for logo
     else:
-         emb.set_thumbnail(url=f"{DEFAULT_IMAGE_LINK}")
+         emb.set_thumbnail(url=DEFAULT_IMAGE_LINK)
     
     ping_channel = await interaction.guild.fetch_channel(CHANNEL_ID)
     await ping_channel.send(f"<@&{PING_ROLE_ID}>\n", embed=emb, allowed_mentions=discord.AllowedMentions(roles=True))
     await interaction.response.send_message(f"{interaction.user.name}, other users have been notified about your case run!")
 
 
-bot.run(f'{BOT_TOKEN}')
+bot.run(BOT_TOKEN)
